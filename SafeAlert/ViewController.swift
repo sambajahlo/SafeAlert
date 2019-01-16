@@ -27,13 +27,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 5
-        locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
         goToLocation(location: locationManager.location ?? sanFrancisco)
         
         
     }
-
-    
+    //MARK
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first{
+            let span =  MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            let region = MKCoordinateRegion(center: location.coordinate,span: span)
+            mapView.setRegion(region, animated: false)
+        }
+        
+    }
     func goToLocation(location:CLLocation){
         let span = MKCoordinateSpan(latitudeDelta: 0.1,longitudeDelta: 0.1)
         let reigon = MKCoordinateRegion(center: location.coordinate,span: span)
