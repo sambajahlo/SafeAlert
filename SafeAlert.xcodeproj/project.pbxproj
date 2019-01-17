@@ -15,6 +15,7 @@
 		A28BBD2021EEA1D90076F7BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BBD1E21EEA1D90076F7BC /* LaunchScreen.storyboard */; };
 		A28BBD2B21EEA1D90076F7BC /* SafeAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD2A21EEA1D90076F7BC /* SafeAlertTests.swift */; };
 		A28BBD3621EEA1D90076F7BC /* SafeAlertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD3521EEA1D90076F7BC /* SafeAlertUITests.swift */; };
+		A2EA34A021F0FDCA0004F415 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2EA349F21F0FDCA0004F415 /* keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		A28BBD3121EEA1D90076F7BC /* SafeAlertUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeAlertUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28BBD3521EEA1D90076F7BC /* SafeAlertUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAlertUITests.swift; sourceTree = "<group>"; };
 		A28BBD3721EEA1D90076F7BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2EA349F21F0FDCA0004F415 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		E49E755A5F0A95F2998DA2D8 /* Pods_SafeAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39BFAEA8660CB15B6E729FD /* Pods-SafeAlert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeAlert.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeAlert/Pods-SafeAlert.release.xcconfig"; sourceTree = "<group>"; };
 		FE6D2F401D71F883D9262FC1 /* Pods-SafeAlert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeAlert.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeAlert/Pods-SafeAlert.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				A28BBD1C21EEA1D90076F7BC /* Assets.xcassets */,
 				A28BBD1E21EEA1D90076F7BC /* LaunchScreen.storyboard */,
 				A28BBD2121EEA1D90076F7BC /* Info.plist */,
+				A2EA349F21F0FDCA0004F415 /* keys.plist */,
 			);
 			path = SafeAlert;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2EA34A021F0FDCA0004F415 /* keys.plist in Resources */,
 				A28BBD2021EEA1D90076F7BC /* LaunchScreen.storyboard in Resources */,
 				A28BBD1D21EEA1D90076F7BC /* Assets.xcassets in Resources */,
 				A28BBD1B21EEA1D60076F7BC /* Main.storyboard in Resources */,
