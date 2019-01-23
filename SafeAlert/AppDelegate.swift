@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
 
@@ -17,6 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     //MARK: Application lifecycle functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // Initialize Parse
+        // Set applicationId and server based on the values in the Heroku settings.
+        Parse.initialize(
+            with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "safealert"
+                configuration.clientKey = "fdafewfewqgwqgergqwjir34l23jk423lk4"  // set to nil assuming you have not set clientKey
+                configuration.server = "https://safe-alert-app.herokuapp.com/parse"
+            })
+        )
+        
+        // check if user is logged in.
+        if PFUser.current() != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //skips the login view controller to the main
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "mainVC")
+        }
 
         
 

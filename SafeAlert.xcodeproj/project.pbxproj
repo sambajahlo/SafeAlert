@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5212FCAC2D915AC619E0894A /* Pods_SafeAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49E755A5F0A95F2998DA2D8 /* Pods_SafeAlert.framework */; };
+		A2359DA721F7D2CD005EEE71 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DA621F7D2CD005EEE71 /* LoginViewController.swift */; };
+		A2359DA921F7F5D1005EEE71 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DA821F7F5D1005EEE71 /* ContactTableViewCell.swift */; };
+		A2359DAB21F8DB00005EEE71 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DAA21F8DB00005EEE71 /* Contact.swift */; };
+		A2359DB121F8E1D9005EEE71 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DB021F8E1D9005EEE71 /* AddContactViewController.swift */; };
 		A28BBD1621EEA1D60076F7BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD1521EEA1D60076F7BC /* AppDelegate.swift */; };
-		A28BBD1821EEA1D60076F7BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD1721EEA1D60076F7BC /* ViewController.swift */; };
+		A28BBD1821EEA1D60076F7BC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD1721EEA1D60076F7BC /* MainViewController.swift */; };
 		A28BBD1B21EEA1D60076F7BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BBD1921EEA1D60076F7BC /* Main.storyboard */; };
 		A28BBD1D21EEA1D90076F7BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28BBD1C21EEA1D90076F7BC /* Assets.xcassets */; };
 		A28BBD2021EEA1D90076F7BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BBD1E21EEA1D90076F7BC /* LaunchScreen.storyboard */; };
@@ -36,9 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A2359DA621F7D2CD005EEE71 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A2359DA821F7F5D1005EEE71 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		A2359DAA21F8DB00005EEE71 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		A2359DB021F8E1D9005EEE71 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		A28BBD1221EEA1D60076F7BC /* SafeAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28BBD1521EEA1D60076F7BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A28BBD1721EEA1D60076F7BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A28BBD1721EEA1D60076F7BC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A28BBD1A21EEA1D60076F7BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A28BBD1C21EEA1D90076F7BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A28BBD1F21EEA1D90076F7BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,6 +89,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2359DAC21F8DB09005EEE71 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				A2359DAA21F8DB00005EEE71 /* Contact.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		A2359DAE21F8DB36005EEE71 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2359DA621F7D2CD005EEE71 /* LoginViewController.swift */,
+				A28BBD1721EEA1D60076F7BC /* MainViewController.swift */,
+				A2359DB021F8E1D9005EEE71 /* AddContactViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A2359DAF21F8DB5D005EEE71 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A2359DA821F7F5D1005EEE71 /* ContactTableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		A28BBD0921EEA1D60076F7BC = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				A28BBD1521EEA1D60076F7BC /* AppDelegate.swift */,
-				A28BBD1721EEA1D60076F7BC /* ViewController.swift */,
+				A2359DAE21F8DB36005EEE71 /* View Controllers */,
+				A2359DAC21F8DB09005EEE71 /* Objects */,
+				A2359DAF21F8DB5D005EEE71 /* TableView */,
 				A28BBD1921EEA1D60076F7BC /* Main.storyboard */,
 				A28BBD1C21EEA1D90076F7BC /* Assets.xcassets */,
 				A28BBD1E21EEA1D90076F7BC /* LaunchScreen.storyboard */,
@@ -289,10 +325,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SafeAlert/Pods-SafeAlert-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/PubNub/PubNub.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PubNub.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,7 +365,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A28BBD1821EEA1D60076F7BC /* ViewController.swift in Sources */,
+				A2359DA921F7F5D1005EEE71 /* ContactTableViewCell.swift in Sources */,
+				A2359DA721F7D2CD005EEE71 /* LoginViewController.swift in Sources */,
+				A2359DAB21F8DB00005EEE71 /* Contact.swift in Sources */,
+				A2359DB121F8E1D9005EEE71 /* AddContactViewController.swift in Sources */,
+				A28BBD1821EEA1D60076F7BC /* MainViewController.swift in Sources */,
 				A28BBD1621EEA1D60076F7BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "70741827BA8D398AA10BE2E20AD1A338"
+               BlueprintIdentifier = "5A6FEAA845C09A7FB57A2150154C863F"
                BlueprintName = "PubNub"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "PubNub.framework">

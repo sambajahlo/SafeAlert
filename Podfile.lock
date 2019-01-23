@@ -1,18 +1,28 @@
 PODS:
+  - Bolts/Tasks (1.9.0)
+  - Parse (1.17.1):
+    - Parse/Core (= 1.17.1)
+  - Parse/Core (1.17.1):
+    - Bolts/Tasks (~> 1.9)
   - PubNub (4.7.8):
     - PubNub/Core (= 4.7.8)
   - PubNub/Core (4.7.8)
 
 DEPENDENCIES:
+  - Parse
   - PubNub (~> 4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts
+    - Parse
     - PubNub
 
 SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
   PubNub: e483fedbcd68ed554dd48276d8bbe9d9e23199a4
 
-PODFILE CHECKSUM: 4db104290c522f971a126bd7c69cd537feeb8838
+PODFILE CHECKSUM: b4331038bba1b4db5e20d8f84cbeb18a5c657ff6
 
 COCOAPODS: 1.5.3
