@@ -1,0 +1,20 @@
+{
+  "name": "pubnubplay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "handlebars": "^4.0.12",
+    "mongoose": "^5.4.2",
+    "nodemon": "^1.18.9",
+    "pubnub": "^4.21.6",
+    "pug": "^2.0.3"
+  }
+}
