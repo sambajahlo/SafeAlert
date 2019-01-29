@@ -3,46 +3,18 @@ const pug = require('pug');
 var path = require('path')
 var bodyParser = require('body-parser');
 var PubNub = require('pubnub')
-var pubTools = require('./pubnub/pubnub.js');
 const app = express()
 const port = 3000
 
 app.set('view engine', 'pug')
-//app.use(express.static(path.join(__dirname, '/public')));
-
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//######################################################
 //PUBNUB STUFF
-
-
-
-
-
-//######################################################
-//DB STUFF
-// //Set up default mongoose connection
-// var mongoDB = 'mongodb://<dbuser>:<dbpassword>@ds034348.mlab.com:34348/pubnubplay'
-// mongoose.connect(mongoDB)
-// // Get Mongoose to use the global promise library
-// mongoose.Promise = global.Promise;
-// //Get the default connection
-// var db = mongoose.connection;
-// //Bind connection to error event (to get notification of connection errors)
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-
-//######################################################
-//APP STUFF, VIEWS AND ALL
-
-app.post('/publish_comment', function(req, res) {
-  res.render('index',
-  {
-
-   })
-  res.end('You sent the comment "' + req.body.comment + '".');
-});
+var pubnub = new PubNub({
+  subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737",
+  publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575"
+})
 
 app.get('/',(req,res) =>{
   res.render('index',
@@ -51,13 +23,34 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
-app.get('/user/:uuid',(req,res)=>{
-  pubTools.subscribe(req.params.uuid)
+app.get('/user/:uuid/lat/:lat/lon/:lon',(req,res)=>{
+  pubnub.addListener({
+    status: function(statusEvent) {
+      if (statusEvent.category === "PNConnectedCategory") {
+        console.log("connected")
+      }
+    },
+    message: function(msg) {
+      console.log(msg.message);
+      res.render('index',
+      {
+        lat: msg.message.lat,
+        lon: msg.message.lat
+      })
+
+    },
+    presence: function(presenceEvent) {
+        // handle presence
+    }
+  })
+  pubnub.subscribe({
+    channels: [req.params.uuid]
+  });
   res.render('index',
   {
-    lat: 37.33182,
-    lon: -122.03118
+    lat: req.params.lat,
+    lon: req.params.lon
   })
 })
 
-app.listen(port,()=>console.log('App listening on port' + port + '!'))
+// app.listen(port,()=>console.log('App listening on port' + port + '!'))

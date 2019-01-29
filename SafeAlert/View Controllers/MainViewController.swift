@@ -16,13 +16,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
 
     //MARK: Properties
     var client: PubNub!
-    var keys : NSDictionary?
+//    var keys : NSDictionary?
+    let UUID = PFUser.current()?["uuid"] as! String
     var askedForHelp = false
     var contacts = [Contact]()
     let span =  MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     var locationManager: CLLocationManager!
     //Getting San Francisco Coordinates
-    let sanFrancisco = CLLocation(latitude: 37.773972, longitude: -122.431297)
+    let sanFrancisco = CLLocation(latitude: 37.7739, longitude: -122.4312)
     
     //MARK: Outlets
     @IBOutlet weak var contactTableView: UITableView!
@@ -40,10 +41,21 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         contactTableView.delegate = self
         contactTableView.dataSource = self
         
+        //setting up new locations every 5 seconds
+//        var currentLat =  sanFrancisco.coordinate.latitude
+//        var currentLon =  sanFrancisco.coordinate.longitude
+//        let timer = Timer(timeInterval: 5, repeats: true, block: { (Timer) in
+//            currentLat = currentLat + 0.001
+//            currentLon = currentLon - 0.001
+//            locationManager.location = CLLocation(latitude: currentLat, longitude: curr)
+//        })
+        
+        
+        
         //Getting the keys for use
-        if let path = Bundle.main.path(forResource: "keys", ofType: "plist") {
-            keys = NSDictionary(contentsOfFile: path)
-        }
+//        if let path = Bundle.main.path(forResource: "keys", ofType: "plist") {
+//            keys = NSDictionary(contentsOfFile: path)
+//        }
         setUpLocation()
         
         setUpPubnub()
@@ -105,12 +117,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     //MARK: Text Methods
     func sendText(phone_number: String){
+        let currentCoordinate = getCurrentLocation().coordinate
         let testText = [
             //+61411111111 test number
             "to":phone_number,
-            "body":"Woah im in danger",
-            "uuid": PFUser.current()!["uuid"] as! String
-        ]
+            "lat":currentCoordinate.latitude,
+            "lon":currentCoordinate.longitude,
+            "uuid": UUID
+            ] as [String : Any]
         self.client.publish(testText, toChannel: "send_text") { (status) in
             if(!status.isError){
                 print("SUCCESS sending text")
@@ -126,7 +140,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
             "lat": currentCoordinate.latitude,
             "lon": currentCoordinate.longitude
         ]
-        self.client.publish(locationDict, toChannel: "location_help") { (status) in
+        self.client.publish(locationDict, toChannel: UUID) { (status) in
             if(!status.isError){
                 print("SUCCESS sending location")
             }else{
@@ -136,7 +150,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     }
     func setUpPubnub(){
         //Pubnub Keys
-        let configuration = PNConfiguration(publishKey: keys!["publishKey"] as! String, subscribeKey: keys!["subscribeKey"] as! String)
+        let configuration = PNConfiguration(publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575", subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737")
         //Number of seconds which is used by server to track whether client still subscribed on remote data objects live feed or not.
         configuration.presenceHeartbeatValue = 180
         //Number of seconds which is used by client to issue heartbeat requests to PubNub service.
@@ -144,15 +158,15 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         configuration.stripMobilePayload = false
         configuration.TLSEnabled = true
         //Logged in as this uuid
-        configuration.uuid = PFUser.current()?["uuid"] as! String
+        configuration.uuid = UUID
         
         self.client = PubNub.clientWithConfiguration(configuration)
         self.client.addListener(self)
         //self.client.uuid()
         
         
-        // Subscribe to demo channel with presence observation
-        self.client.subscribeToChannels(["location_help"], withPresence: true)
+        // Subscribe to uuid channel with presence observation
+        self.client.subscribeToChannels([UUID], withPresence: true)
     }
     
     // Handle new message from one of channels on which client has been subscribed.
@@ -165,14 +179,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     //MARK: Table view methods
     func reloadContacts(){
         let query = PFQuery(className:"Contact")
-        query.whereKey("ownerUUID", equalTo:PFUser.current()?["uuid"]as! String)
+        query.whereKey("ownerUUID", equalTo:UUID)
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if let error = error {
                 // Log details of the failure
                 print(error.localizedDescription)
             } else if let objects = objects {
                 // The find succeeded.
-                print("Successfully retrieved \(objects.count) scores.")
+                print("Successfully retrieved \(objects.count) contacts.")
                 // Do something with the found objects
                 self.contacts = objects as! [Contact]
                 print(self.contacts)
