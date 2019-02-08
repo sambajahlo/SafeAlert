@@ -16,7 +16,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
 
     //MARK: Properties
     var client: PubNub!
-//    var keys : NSDictionary?
     let UUID = PFUser.current()?["uuid"] as! String
     var askedForHelp = false
     var contacts = [Contact]()
@@ -27,6 +26,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     //MARK: Outlets
     @IBOutlet weak var contactTableView: UITableView!
+    @IBOutlet weak var dangerButton: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var contactView: UITableView!
    
@@ -41,21 +41,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         contactTableView.delegate = self
         contactTableView.dataSource = self
         
-        //setting up new locations every 5 seconds
-//        var currentLat =  sanFrancisco.coordinate.latitude
-//        var currentLon =  sanFrancisco.coordinate.longitude
-//        let timer = Timer(timeInterval: 5, repeats: true, block: { (Timer) in
-//            currentLat = currentLat + 0.001
-//            currentLon = currentLon - 0.001
-//            locationManager.location = CLLocation(latitude: currentLat, longitude: curr)
-//        })
-        
-        
-        
-        //Getting the keys for use
-//        if let path = Bundle.main.path(forResource: "keys", ofType: "plist") {
-//            keys = NSDictionary(contentsOfFile: path)
-//        }
         setUpLocation()
         
         setUpPubnub()
@@ -63,14 +48,21 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
     }
     //MARK: Actions
-
     @IBAction func dangerClicked(_ sender: UITapGestureRecognizer) {
-        askedForHelp = true
-        publishLocation()
-        
-        for contact in contacts{
-            sendText(phone_number: contact.phoneNumber!)
+        if(!askedForHelp){
+            dangerButton.image = UIImage(named: "finished")
+            askedForHelp = true
+            publishLocation()
+            
+            for contact in contacts{
+                sendText(phone_number: contact.phoneNumber!)
+            }
+            self.okayAlert(title: "Alerted", message: "All contacts alerted to your location.")
+        }else{
+            dangerButton.image = UIImage(named: "danger")
+            askedForHelp = false
         }
+       
     }
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         PFUser.logOutInBackground { (error) in
@@ -83,9 +75,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     func getCurrentLocation()-> CLLocation{
         return locationManager.location ?? sanFrancisco
     }
+    //This function sets up the locationManager to see where the users current location is.
     func setUpLocation(){
-        
-        //Get user location
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -93,6 +84,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         locationManager.requestWhenInUseAuthorization()
         goToLocation(location: locationManager.location ?? sanFrancisco)
     }
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedWhenInUse {
             locationManager.startUpdatingLocation()
@@ -162,7 +154,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         self.client = PubNub.clientWithConfiguration(configuration)
         self.client.addListener(self)
-        //self.client.uuid()
         
         
         // Subscribe to uuid channel with presence observation
@@ -207,6 +198,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         return cell
     }
     
+    func okayAlert(title: String,message : String){
+        let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 
 }
 

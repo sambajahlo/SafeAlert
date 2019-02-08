@@ -139,6 +139,7 @@
                     <connections>
                         <outlet property="contactTableView" destination="4HJ-Cj-9OZ" id="TfK-UJ-FUn"/>
                         <outlet property="contactView" destination="4HJ-Cj-9OZ" id="uqq-ks-4fZ"/>
+                        <outlet property="dangerButton" destination="o8r-Dm-gZ7" id="cEe-Tp-lRd"/>
                         <outlet property="mapView" destination="7fK-iJ-jrx" id="0D2-CM-9Ez"/>
                     </connections>
                 </viewController>
