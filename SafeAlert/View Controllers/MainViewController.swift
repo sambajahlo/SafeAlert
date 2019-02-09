@@ -43,7 +43,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         setUpLocation()
         
-        setUpPubnub()
+        setUpPubNub()
         
         
     }
@@ -140,9 +140,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
             }
         }
     }
-    func setUpPubnub(){
+    func setUpPubNub(){
         //Pubnub Keys
-        let configuration = PNConfiguration(publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575", subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737")
+        let configuration = PNConfiguration(publishKey: "INSERT PUBNUB PUB KEY HERE", subscribeKey: "INSERT PUBNUB SUB KEY HERE")
         //Number of seconds which is used by server to track whether client still subscribed on remote data objects live feed or not.
         configuration.presenceHeartbeatValue = 180
         //Number of seconds which is used by client to issue heartbeat requests to PubNub service.

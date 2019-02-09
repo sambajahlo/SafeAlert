@@ -1,3 +1,6 @@
+//The app uses channel send_text so make sure to set that as the channel name in your function
+//Also set it as after fire or publish
+//Make sure you replace the key and username below
 // require console module for logging to console
 const console = require('console');
 
