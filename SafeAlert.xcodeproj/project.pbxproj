@@ -12,6 +12,7 @@
 		A2359DA921F7F5D1005EEE71 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DA821F7F5D1005EEE71 /* ContactTableViewCell.swift */; };
 		A2359DAB21F8DB00005EEE71 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DAA21F8DB00005EEE71 /* Contact.swift */; };
 		A2359DB121F8E1D9005EEE71 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359DB021F8E1D9005EEE71 /* AddContactViewController.swift */; };
+		A268E40C2211DE7100964572 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268E40B2211DE7100964572 /* SignUpViewController.swift */; };
 		A28BBD1621EEA1D60076F7BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD1521EEA1D60076F7BC /* AppDelegate.swift */; };
 		A28BBD1821EEA1D60076F7BC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BBD1721EEA1D60076F7BC /* MainViewController.swift */; };
 		A28BBD1B21EEA1D60076F7BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BBD1921EEA1D60076F7BC /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		A2359DA821F7F5D1005EEE71 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		A2359DAA21F8DB00005EEE71 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		A2359DB021F8E1D9005EEE71 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		A268E40B2211DE7100964572 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A28BBD1221EEA1D60076F7BC /* SafeAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28BBD1521EEA1D60076F7BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A28BBD1721EEA1D60076F7BC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				A2359DA621F7D2CD005EEE71 /* LoginViewController.swift */,
 				A28BBD1721EEA1D60076F7BC /* MainViewController.swift */,
+				A268E40B2211DE7100964572 /* SignUpViewController.swift */,
 				A2359DB021F8E1D9005EEE71 /* AddContactViewController.swift */,
 			);
 			path = "View Controllers";
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2359DA921F7F5D1005EEE71 /* ContactTableViewCell.swift in Sources */,
+				A268E40C2211DE7100964572 /* SignUpViewController.swift in Sources */,
 				A2359DA721F7D2CD005EEE71 /* LoginViewController.swift in Sources */,
 				A2359DAB21F8DB00005EEE71 /* Contact.swift in Sources */,
 				A2359DB121F8E1D9005EEE71 /* AddContactViewController.swift in Sources */,

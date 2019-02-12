@@ -19,58 +19,66 @@ class LoginViewController: UIViewController {
     @IBAction func signIn(_ sender: UIButton) {
             let username = usernameField.text ?? ""
             let password = passwordField.text ?? ""
-            
-            PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
-                if let error = error {
-                    print("User log in failed: \(error.localizedDescription)")
-                    if(error._code == 201){
-                        self.okayAlert(title: "Password Error", message: "You must include a password.")
-                    }
-                    else if(error._code == 200){
-                        self.okayAlert(title: "Username Error", message: "You must include a username.")
-                    }
-                } else {
-                    print("User logged in successfully")
-                    
-                    // shows the main view controller
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        
+        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error:Error?) in
+            if user != nil {
+                print("User logged in successfully")
+                
+                // shows the main view controller
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                
+            } else {
+                print("User log in failed: \(error!.localizedDescription)")
+                print("User log in failed: \(error!)")
+
+                if(error!._code == 201){
+                    self.okayAlert(title: "Password Error", message: "You must include a password.")
+                }
+                else if(error!._code == 200){
+                    self.okayAlert(title: "Username Error", message: "You must include a username.")
+                }
+                else if(error!._code == 101){
+                    self.okayAlert(title: "Invalid Username/Password", message: "Your username and/or password was wrong.")
                 }
             }
-            
+        }
+//        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: NSError?) in
+//            if user != nil {
+//                print("User logged in successfully")
+//
+//                // shows the main view controller
+//                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+//
+//            } else {
+//                print("User log in failed: \(error.localizedDescription)")
+//                if(error._code == 201){
+//                    self.okayAlert(title: "Password Error", message: "You must include a password.")
+//                }
+//                else if(error._code == 200){
+//                    self.okayAlert(title: "Username Error", message: "You must include a username.")
+//                }
+//            }
+//            }
+//                if let error = error {
+//                    print("User log in failed: \(error.localizedDescription)")
+//                    if(error._code == 201){
+//                        self.okayAlert(title: "Password Error", message: "You must include a password.")
+//                    }
+//                    else if(error._code == 200){
+//                        self.okayAlert(title: "Username Error", message: "You must include a username.")
+//                    }
+//                } else {
+//                    print("User logged in successfully")
+//
+//                    // shows the main view controller
+//                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+//                }
+//            }
+//
         
     }
     @IBAction func signUp(_ sender: UIButton) {
-       
-            let newUser = PFUser()
-            
-            newUser.username = usernameField.text
-            newUser.password = passwordField.text
-            
-            // call sign up function on the new User object
-            newUser.signUpInBackground { (success: Bool, error: Error?) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    if(error._code == 201){
-                        self.okayAlert(title: "Password Error", message: "You must include a password.")
-                    }
-                    else if(error._code == 200){
-                        self.okayAlert(title: "Username Error", message: "You must include a username.")
-                    }
-                    else if(error._code == 202){
-                        self.okayAlert(title: "Username Error", message: "Username already taken.")
-                    }
-                } else {
-                    print("User Registered successfully")
-                    //set the users uuid
-                    let uuid = NSUUID.init()
-                    newUser["uuid"] = uuid.uuidString
-                    //updates the parse server with it.
-                    newUser.saveInBackground()
-                    
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                    
-                }
-            }
+        self.performSegue(withIdentifier: "signUpSegue", sender: nil)
         
         
     }

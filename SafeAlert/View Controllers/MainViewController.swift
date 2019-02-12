@@ -65,10 +65,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
        
     }
     @IBAction func logOut(_ sender: UIBarButtonItem) {
-        PFUser.logOutInBackground { (error) in
-             self.performSegue(withIdentifier: "logOutSegue", sender: nil)
-        }
         
+        //NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
+
+       PFUser.logOut()
+//        print(PFUser.current())
+        self.performSegue(withIdentifier: "logOutSegue", sender: nil)
     }
     
     //MARK: Location and Map functions
@@ -113,6 +115,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         let testText = [
             //+61411111111 test number
             "to":phone_number,
+            "name": PFUser.current()?["name"] as! String,
             "lat":currentCoordinate.latitude,
             "lon":currentCoordinate.longitude,
             "uuid": UUID
@@ -142,7 +145,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     }
     func setUpPubNub(){
         //Pubnub Keys
-        let configuration = PNConfiguration(publishKey: "INSERT PUBNUB PUB KEY HERE", subscribeKey: "INSERT PUBNUB SUB KEY HERE")
+        let configuration = PNConfiguration(publishKey: "INSERT PUB KEY HERE", subscribeKey: "INSERT SUB KEY HERE")
         //Number of seconds which is used by server to track whether client still subscribed on remote data objects live feed or not.
         configuration.presenceHeartbeatValue = 180
         //Number of seconds which is used by client to issue heartbeat requests to PubNub service.
