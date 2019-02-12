@@ -13,8 +13,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 - [ ] Xcode
-- [ ] Pubnub Account ![Sign Up!](https://dashboard.pubnub.com/signup)
-- [ ] ClickSend Account ![Sign Up!](https://dashboard.clicksend.com/#/signup/step0)
+- [ ] PubNub Account [Sign Up!](https://dashboard.pubnub.com/signup)
+- [ ] ClickSend Account [Sign Up!](https://dashboard.clicksend.com/#/signup/step0)
 
 ### Installing
 
@@ -24,9 +24,9 @@ You already have everything installed that you need from this repository!
 
 ## Deployment
 
-In order to use and deploy this app you need to replace the keys with your own in two places and create a function in your PubNub dashboard.
+In order to use and deploy this app, you need to replace the keys with your own in two places and create a function in your PubNub dashboard.
 - [ ] Replace the placeholder keys in the setUpPubNub function in MainViewController.swift with your own Pub/Sub keys.
-- [ ] Create a function to send an api call to ClickSend using the provided code in CSFunc.js.
+- [ ] Create a function to send an API call to ClickSend using the provided code in CSFunc.js or import the function from [here](https://admin.pubnub.com/#/blocks/1140/import)
 - [ ] Follow the instructions in the top of the CSFunc.js file for function configurations and replacement API keys.
  You should now be able to run the app and send texts with links to the web portion!
 
@@ -37,5 +37,5 @@ In order to use and deploy this app you need to replace the keys with your own i
 ## Acknowledgments
 
 * CodePath from which I learned how to create iOS apps
-* My girlfriend from which i got the idea from this app
+* My girlfriend from which I got the idea from this app
 
